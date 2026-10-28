@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Generated outputs: keep out of Git history
+artifacts/*
+!artifacts/.gitkeep
+*.mp4
+*.mov
+*.avi
+
+# Model weights, caches and large data must never be committed
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.onnx
+*.ckpt
+models/
+.cache/
+data/raw/
+data/private/
+
+# Secrets and local settings
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.DS_Store
+.idea/
+.vscode/

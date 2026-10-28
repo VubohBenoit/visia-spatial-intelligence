@@ -1,0 +1,45 @@
+# VisIA Spatial Intelligence — default configuration.
+# Every key is optional; omitted keys fall back to the defaults in config.py.
+# This is a research prototype, not a certified navigation or safety system.
+
+seed: 0
+
+detector:
+  # facebook/detr-resnet-50 — Apache-2.0 (see docs/LICENSE_AUDIT.md)
+  model_id: facebook/detr-resnet-50
+  # Pinned commit (verified 2026-10-28); see docs/LICENSE_AUDIT.md
+  revision: 1d5f47bd3bdd2c4bbfa585418ffe6da5028b4c0b
+  score_threshold: 0.5
+  classes: [person, bicycle, car, motorcycle, bus, truck, traffic light, stop sign, bench, fire hydrant, dog]
+
+depth:
+  # Depth-Anything-V2-Small — Apache-2.0. Relative inverse depth only; no metric meters.
+  enabled: true
+  model_id: depth-anything/Depth-Anything-V2-Small-hf
+  # Pinned commit (verified 2026-10-28); see docs/LICENSE_AUDIT.md
+  revision: 5426e4f0f36572d16453bbda7a8389317b1bef99
+
+tracker:
+  enabled: true
+  iou_threshold: 0.3
+  max_missed_frames: 5
+
+reasoning:
+  min_frames_for_alert: 3
+  alert_cooldown_frames: 15
+  min_corridor_overlap: 0.05
+  proximity_high: 0.6
+  proximity_medium: 0.35
+  # Normalised image coordinates in [0, 1]; a centred trapezoid for a waist-height camera.
+  corridor:
+    bottom_left: 0.25
+    bottom_right: 0.75
+    top_left: 0.40
+    top_right: 0.60
+    top_y: 0.55
+
+limits:
+  max_image_bytes: 10485760
+  max_image_side: 4096
+  min_image_side: 32
+  max_video_frames: 300
