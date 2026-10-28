@@ -59,6 +59,9 @@ markers = [
 ]
 
 [tool.uv]
+# NumPy is pinned to 1.x for torch 2.2. pyarrow (pulled in by Streamlit) must stay on a
+# release that still imports under NumPy 1.x; newer releases raise an ImportError.
+constraint-dependencies = ["pyarrow<17"]
 # Linux (CI and Docker) installs CPU-only PyTorch wheels, avoiding multi-GB CUDA downloads.
 # macOS keeps using PyPI, which provides the PyTorch build for Intel and Apple Silicon.
 [[tool.uv.index]]
